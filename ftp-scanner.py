@@ -1,11 +1,12 @@
 #!/usr/bin/env python$
 # coding=utf-8
+'''
+python版本必须满足3.0以上
 
-import socket
-import ftplib
-import sys
-from concurrent.futures import ThreadPoolExecutor
-import os
+'''
+
+import socket,ftplib,sys,os
+from concurrent.futures import ThreadPoolExecutor #python 3.0以上可以使用的线程池
 
 
 def ip2num(ip):
@@ -77,9 +78,9 @@ def conn(ip):
         print(e)
         pass
 
-def scanner(iplist,ThreadNum):
-    socket.setdefaulttimeout(2.5)
-    with ThreadPoolExecutor(ThreadNum) as Executor:
+def scanner(iplist,ThreadNum):#调用函数
+    socket.setdefaulttimeout(2.5)#可以根据你的需求更改socket 失效时间
+    with ThreadPoolExecutor(ThreadNum) as Executor: #加入线程池中
         for ip in iplist:
             try:
                 Executor.submit(conn,ip)
@@ -92,8 +93,9 @@ if __name__ == '__main__':
         print("[+]Please Using :")
         print("[+]scanner.py user.txt passwd.txt")
         sys.exit(0)
-    print("[+]---------Welcome to FTP scanner--------")
-    print("[+]----------------By LiT0----------------")
+    print("[+]---------Welcome to FTP scanner v1.0---------")
+    print("[+]----------------By ytala---------------------")
+    print("[+]---http://blog.csdn.net/syh_486_007----------")
     start_ip = input("[+]Start IPaddr: ")
     end_ip = input("[+]End ipaddr: ")
     ThreadNum = input("Thread Number: ")
